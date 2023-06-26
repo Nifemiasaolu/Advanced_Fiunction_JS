@@ -114,7 +114,7 @@
 //  greeter2('Jonas');
 //  greeter2('Stephen');
 
- ////////////////////////////////////
+ /////////////////////////////////////
 //==========  Call and Apply Method ==========
 
 const lufthansa = {
