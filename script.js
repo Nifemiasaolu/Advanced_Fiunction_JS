@@ -117,34 +117,104 @@
  /////////////////////////////////////
 //==========  Call and Apply Method ==========
 
-const lufthansa = {
-    airline: 'Lufthansa',
-    iotaCode: 'LH',
-    bookings: [],
-    book(flightNum, name) {
-        console.log(`${name} booked a seat on ${this.airline} flight ${this.iotaCode}${flightNum}`);
-        this.bookings.push({flight: `${this.iotaCode}${flightNum}`, name})
-    }
-}
+// const lufthansa = {
+//     airline: 'Lufthansa',
+//     iataCode: 'LH',
+//     bookings: [],
+//     book(flightNum, name) {
+//         // console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+//         this.bookings.push({flight: `${this.iataCode}${flightNum}`, name})
+//     }
+// }
 
-lufthansa.book(239, 'Jonas Schmedtmann');
-lufthansa.book(457, 'John Smith');
-console.log(lufthansa);
+// lufthansa.book(239, 'Jonas Schmedtmann');
+// lufthansa.book(457, 'John Smith');
+// console.log(lufthansa);
 
-const eurowings = {
-    name: 'Eurowings',
-    iotaCode: 'EW',
-    bookings: [],
-}
+// const eurowings = {
+//     airline: 'Eurowings',
+//     iataCode: 'EW',
+//     bookings: [],
+// }
 
-const book = lufthansa.book;
+// const book = lufthansa.book;
 
 // Does NOT WOrk 
 // book(23, 'Sarah Williams')
 
-// Using Call Method
-book.call(eurowings, 23, 'Sarah Williams');
-console.log(eurowings);
+//====== Using Call Method to manipulate 'this' keyword ======
 
-book.call(lufthansa, 248, 'Mary Cooper');
-console.log(lufthansa);
+// Call method calls a function
+// book.call(eurowings, 23, 'Sarah Williams');
+// console.log(eurowings);
+
+// book.call(lufthansa, 248, 'Mary Cooper');
+// console.log(lufthansa);
+
+// const swiss = {
+//     airline: 'Swiss Air Line',
+//     iataCode: 'SW',
+//     bookings: [],
+// }
+
+// book.call(swiss, 79, 'Jessica Rein');
+// console.log(swiss);
+
+//======= Apply Method ===========
+
+// const flightData = [583, 'George Cooper'];
+// book.apply(swiss, flightData);
+// console.log(swiss);
+
+// book.call(eurowings, ...flightData);
+// console.log(eurowings);
+
+
+//=========== Bind Method ============
+// Bind method returns a new function
+// const bookEW = book.bind(eurowings);
+// const bookSW = book.bind(swiss);
+// const bookLH = book.bind(lufthansa);
+
+// bookEW(45, 'Jay Nelson')
+
+// const bookEW23 = book.bind(eurowings, 23);
+// bookEW23('Jonas Schmedtmann')
+// bookEW23('Patrick Novas')
+
+// With Event Listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function() {
+//     console.log(this);
+
+//     this.planes++;
+//     console.log(this.planes);
+// };
+// lufthansa.buyPlane();
+// document.querySelector('.buy').addEventListener('clcik', lufthansa.buyPlane.bind(lufthansa));
+// console.log(lufthansa.buyPlane() .bind(lufthansa));
+
+//==== Using Partial Application =====
+
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVat = addTax.bind(null, 0.23);
+// addVat = value + value * rate;
+
+console.log(addVat(100));
+console.log(addVat(60));
+console.log(addVat(976));
+
+//---- Using Function Returning Function -----
+const addTax1 = function(rate) {
+    return function(value) {
+        console.log(value + value * rate);
+    }
+}
+const addVat1 = addTax1(0.25);
+addVat1(500);
+addVat1(872);
+addVat1(471);
+
+// addTax1(0.23)(5400); (Advanced and straight way)
