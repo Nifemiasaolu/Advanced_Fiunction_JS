@@ -218,3 +218,36 @@ addVat1(872);
 addVat1(471);
 
 // addTax1(0.23)(5400); (Advanced and straight way)
+
+//////////////////////////////////////////
+//========= Immediately Invoked Function Expressions (IIFE) ========
+
+const runOnce = function() {
+    console.log('This will never run again');
+
+};
+
+// IIFE 
+(function() {
+    console.log('This will never walk again');
+})();
+
+(() => console.log('This will ALSO never walk again'))();
+
+/////////////////////////////////////////////////
+//================= Closures =================
+// A closure makes a function remember everything by the time created
+const secureBooking =  function() {
+    let passengerCount = 0;
+    
+    return function() {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`);
+    };
+}
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
