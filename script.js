@@ -63,8 +63,8 @@
 //  newPassport(jonas);
 //  checkIn(flight, jonas);
 
- ///////////////////////////////
-//======= Functions Accepting Call Back Function =========
+ ///////////////////////////////////////
+//======= Call Back Function =========
 // const oneWord = function(str) {
 //     return str.replace(/ /g, '').toLowerCase();
 // } 
@@ -223,16 +223,25 @@ addVat1(471);
 //========= Immediately Invoked Function Expressions (IIFE) ========
 
 const runOnce = function() {
-    console.log('This will never run again');
+    // console.log('This will never work again');
 
 };
 
 // IIFE 
 (function() {
-    console.log('This will never walk again');
+    // console.log('This will never work again');
+    // const isPrivate = 23;
 })();
+// console.log(isPrivate);//won't work
 
-(() => console.log('This will ALSO never walk again'))();
+// (() => console.log('This will ALSO never work again'))();
+
+{
+    // const isPrivate = 23;
+}
+// console.log(isPrivate);// won't stiil work, as it cannot access the variable.
+// but var will work, but its not advisable 
+
 
 /////////////////////////////////////////////////
 //================= Closures =================
@@ -252,4 +261,46 @@ booker();
 booker();
 booker();
 
-console.dir(booker);
+// console.dir(booker);
+
+//=== Examples ====
+
+let f;
+
+const g = function(){
+    const a = 23;
+    f = function() {
+        console.log(a * 2);
+    };
+};
+
+g();
+f();
+console.dir(f)
+// Re-assigning f function
+
+const h = function(){
+    const b = 773;
+    f = function() {
+        console.log(b * 2);
+    };
+};
+
+h();
+f();
+console.dir(f);
+
+// Example 2
+ const boardPassengers = function(n, wait) {
+    const perGroup = n/3
+
+    setTimeout(function() {
+        console.log(`We are now boarding all ${n} passengers`);
+        console.log(`There are 3 groups, each with ${perGroup} passengers`);
+    }, wait * 1000)
+
+    console.log(`Will start boarding in ${wait} seconds`);
+}
+
+// const perGroup = 1000
+boardPassengers(180, 3)
