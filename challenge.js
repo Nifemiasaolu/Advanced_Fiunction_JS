@@ -47,7 +47,7 @@ document
 
 // .5
 //   Call method is used for a different this keyword
-///  if you want  to use a new Array, and existing function 
+//  if you want  to use a new Array, and existing function 
 // [5, 2, 3]
 // [1, 5, 3, 9, 6, 1]
 
