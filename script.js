@@ -197,19 +197,19 @@
 //==== Using Partial Application =====
 
 const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.1, 200));
+// console.log(addTax(0.1, 200));
 
 const addVat = addTax.bind(null, 0.23);
 // addVat = value + value * rate;
 
-console.log(addVat(100));
-console.log(addVat(60));
-console.log(addVat(976));
+// console.log(addVat(100));
+// console.log(addVat(60));
+// console.log(addVat(976));
 
 //---- Using Function Returning Function -----
 const addTax1 = function(rate) {
     return function(value) {
-        console.log(value + value * rate);
+        // console.log(value + value * rate);
     }
 }
 const addVat1 = addTax1(0.25);
